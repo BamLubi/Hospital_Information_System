@@ -1,0 +1,2 @@
+/* pages/doctorSelect/doctorSelect.wxss */
+@import "../../template/doctorCard.wxss";

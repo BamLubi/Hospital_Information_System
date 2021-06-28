@@ -1,0 +1,14 @@
+<!--pages/doctorSelect/doctorSelect.wxml-->
+<import src="../../template/doctorCard.wxml" />
+<!-- 时间列表 -->
+<view class="date-list">
+  <van-grid column-num="5" clickable="{{true}}">
+    <van-grid-item icon="underway-o" data-dateTime="{{item.dateTime}}"  text="{{item.dayStr}}:{{item.date}}" wx:key="id" wx:for="{{dateList}}" catchtap="selectDate" />
+  </van-grid>
+</view>
+<!-- 医生列表 -->
+<view class="doctor-list">
+  <view wx:for="{{scheduleList}}" wx:key="id">
+    <template is="doctorCard" data="{{...item}}" />
+  </view>
+</view>

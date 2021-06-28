@@ -1,0 +1,56 @@
+<!--index.wxml-->
+<view class="container">
+  <view>
+    <image style="width: 100%; height: 150px; background-color: #eeeeee;" src="../../static/profile.png"></image>
+  </view>
+  <view class="main-menu">
+    <van-grid clickable="{{true}}">
+      <van-grid-item icon="todo-list-o" text="预约挂号" url="/pages/departSelect/departSelect" />
+      <van-grid-item icon="service-o" text="今日挂号" url="/pages/todaySelect/todaySelect"/>
+      <van-grid-item icon="balance-list-o" text="门诊缴费" url="/pages/charge/charge"/>
+      <van-grid-item icon="shop-collect-o" text="医保报销" />
+    </van-grid>
+  </view>
+  <view class="sub-menu">
+    <van-grid clickable="{{true}}" column-num="4">
+      <van-grid-item use-slot>
+        <image src="../../static/search.png" class="sub-menu-icon" />
+        <text class="sub-menu-span">报告查询</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <image src="../../static/wait.png" class="sub-menu-icon" />
+        <text class="sub-menu-span">排队叫号</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <image src="../../static/record.png" class="sub-menu-icon" />
+        <text class="sub-menu-span">缴费记录</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <image src="../../static/registerrecord.png" class="sub-menu-icon" />
+        <text class="sub-menu-span">预约挂号记录</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <image src="../../static/compass.png" class="sub-menu-icon" />
+        <text class="sub-menu-span">就医指南</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <image src="../../static/house.png" class="sub-menu-icon" />
+        <text class="sub-menu-span">楼层分布</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <image src="../../static/position.png" class="sub-menu-icon" />
+        <text class="sub-menu-span">来院导航</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <image src="../../static/interview.png" class="sub-menu-icon" />
+        <text class="sub-menu-span">流行病学调查表</text>
+      </van-grid-item>
+    </van-grid>
+    <van-notice-bar mode="link" text="健康资讯" />
+    <van-tabbar active="{{ activeTag }}" bind:change="onTagChange">
+      <van-tabbar-item name="/pages/index/index" icon="desktop-o">自助服务</van-tabbar-item>
+      <van-tabbar-item name="search" icon="shop-o">消息中心</van-tabbar-item>
+      <van-tabbar-item name="/pages/userManage/userManage" icon="friends-o">个人中心</van-tabbar-item>
+    </van-tabbar>
+  </view>
+</view>

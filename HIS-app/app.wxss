@@ -1,0 +1,13 @@
+/**app.wxss**/
+
+.van-card__title{
+  font-size: medium;
+}
+
+.van-card__desc{
+  font-size: medium;
+}
+
+.van-card__price{
+  font-size: medium;
+}

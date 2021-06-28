@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nchu.cloudhis.dao.RegisterInfoDao">
+
+    <insert id="insert">
+        insert into register_info (
+            id,
+            patient_id,
+            doctor_id,
+            depart_id,
+            charge_status ,
+            register_fee,
+            update_time
+        ) values (
+            #{id},
+            #{patientInfo.id},
+            #{doctor.id},
+            #{departInfo.id},
+            0,
+            #{registerFee},
+            #{updateTime}
+        )
+    </insert>
+
+    <update id="update">
+        update register_info
+        set charge_time = #{chargeTime}, charge_status = 2
+        where id = #{id}
+    </update>
+
+</mapper>

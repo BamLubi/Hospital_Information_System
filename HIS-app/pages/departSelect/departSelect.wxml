@@ -1,0 +1,20 @@
+<!--pages/departSelect.wxml-->
+<view>
+  <!-- 挂号类型 -->
+  <van-divider contentPosition="center" customStyle="color: #1989fa; border-color: #1989fa; font-size: 18px;">
+    选择挂号类型
+  </van-divider>
+  <van-radio-group value="{{ registerType }}" bind:change="onTypeChange" v-model="radio" direction="horizontal">
+    <van-radio name="1" shape="square" icon-size="26px">专家号</van-radio>
+    <van-radio name="0" shape="square" icon-size="26px">普通号</van-radio>
+  </van-radio-group>
+  <!-- 科室 -->
+  <van-divider contentPosition="center" customStyle="color: #1989fa; border-color: #1989fa; font-size: 18px;">
+    选择科室
+  </van-divider>
+  <!-- 科室选择 -->
+  <van-grid column-num="4" clickable="{{true}}">
+    <van-grid-item icon="hotel-o" text="{{item.departName}}" wx:key="id" wx:for="{{departInfoList}}"
+      url="/pages/doctorSelect/doctorSelect?registerType={{registerType}}&departId={{item.id}}" />
+  </van-grid>
+</view>

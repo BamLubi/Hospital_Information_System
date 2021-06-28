@@ -1,0 +1,26 @@
+/* pages/charge/charge.wxss */
+.register-list{
+  width: 90%;
+  margin-left: 5%;
+  height: 300rpx;
+  background: rgb(226, 208, 208);
+  border-radius: 10rpx;
+  box-shadow: 5px 5px 5px #cdcfcf;
+}
+
+.pres-list{
+  width: 90%;
+  margin-left: 5%;
+  height: 300rpx;
+  background: rgb(226, 208, 208);
+  border-radius: 10rpx;
+  box-shadow: 5px 5px 5px #cdcfcf;
+}
+
+van-tag{
+  margin-right: 5rpx;
+}
+
+.view-card__title{
+  margin-bottom: 15rpx !important;
+}

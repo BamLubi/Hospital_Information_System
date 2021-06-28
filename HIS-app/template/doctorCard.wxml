@@ -1,0 +1,24 @@
+<template name="doctorCard">
+  <!-- 分割线 -->
+  <view class="container">
+    <view class="divLine"></view>
+  </view>
+  <!-- 医生信息 -->
+  <van-card
+    tag="{{level=='1'?'专家':'普通'}}"
+    desc="{{doctor.doctorRanker}}: {{doctor.introduce}}"
+    price="{{level=='1'?30:12}}"
+    title="{{doctor.name}}">
+    <!-- 头像 -->
+    <view slot="thumb" class="avatar">
+      <image style="height:350rpx;width:100%" src="/image/top.jpg"></image>
+    </view>
+    <!-- 预约按钮 -->
+    <view slot="footer">
+      <van-button size="normal" round type="info" data-doctorid="{{doctor.id}}" data-departid="{{doctor.departInfo.id}}"
+        data-registerfee="{{level=='1'?30:12}}" catchtap="selectDoctor">
+        预 约
+      </van-button>
+    </view>
+  </van-card>
+</template>

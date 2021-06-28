@@ -1,0 +1,31 @@
+/**index.wxss**/
+.container {
+  background-color: #f5f7f9;
+}
+
+.main-menu {
+  position: relative;
+  top:-50rpx;
+  width: 95%;
+  margin:0 auto;
+  border-radius: 30rpx;
+  overflow: hidden;
+  box-shadow:0rpx 50rpx 50rpx #d7dde4 ;
+}
+
+.main-menu .van-grid-item{
+  height: 250rpx;
+}
+.sub-menu .van-grid-item__content{
+  background-color:  #f5f7f9;
+}
+
+.sub-menu-icon {
+  width: 80rpx;
+  height:80rpx;
+}
+.sub-menu-span{
+  color: #646566;
+  font-size: 25rpx;
+  text-align: center;
+}

@@ -1,0 +1,7 @@
+/* pages/patientManage/patientManage.wxss */
+.confirm-button{
+  text-align: center;
+  width: 100%;
+  display: block;
+  background-color: aqua;
+}

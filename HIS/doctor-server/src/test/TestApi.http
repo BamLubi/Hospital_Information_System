@@ -1,0 +1,66 @@
+POST http://localhost:17070/register
+Content-Type: application/json;charest=utf-8
+
+{
+  "id": "100000003145"
+}
+
+###
+POST http://localhost:17070/register
+Content-Type: application/json;charest=utf-8
+
+{
+  "patientInfo": {
+    "name": "赵千里"
+  }
+}
+
+###
+POST http://localhost:7777/doctor/drug/
+Content-Type: application/json;charset=utf8
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoid3d3LmRlbW8iLCJleHAiOjE2MDAxNTczOTAsInVzZXJuYW1lIjoiemhhbmd5aXhpbmcifQ.grZU3mgRoy8sl0GCS43GXJ8Cs9gW9e1x4LhsYmtUBE8
+
+{
+  "drugName": "复方"
+}
+
+###
+POST http://localhost:7777/auth/login
+Content-Type: application/json
+
+{
+  "username": "zhangyixing",
+  "password": "123456"
+}
+
+### 测试插入接口
+POST http://localhost:17070/pres/
+Content-Type: application/json;charset=utf-8
+
+{
+  "description": "典型烫伤",
+  "detail": "每日外敷一次",
+  "presStatus": "0",
+  "drugFee": 720,
+  "doctor": {
+    "id": "1"
+  },
+  "registerInfo": {
+    "id": "100000030327"
+  },
+  "presDetailsList": [
+  ]
+}
+
+###
+GET http://localhost:18080/depart/all
+
+###
+POST http://localhost:17070/pres/find
+Content-Type: application/json;charset=utf-8
+
+{
+  "registerInfo": {
+    "id": "100000030327"
+  }
+}

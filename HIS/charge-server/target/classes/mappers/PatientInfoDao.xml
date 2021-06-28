@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nchu.cloudhis.dao.PatientInfoDao">
+
+    <select id="findById">
+        select
+            id,
+            name,
+            identity,
+            age,
+            phone_num phoneNum,
+            wx_account wxAccount
+        from patient_info
+        where id=#{id} and del_flag!=1
+    </select>
+    <select id="findByWxAccount" resultType="edu.nchu.cloudhis.model.PatientInfo">
+        select
+            id,
+            name,
+            identity,
+            age,
+            phone_num phoneNum,
+            gender,
+            wx_account wxAccount
+        from patient_info
+        where wx_account=#{wxAccount} and del_flag!=1
+    </select>
+
+    <insert id="insert">
+        insert into patient_info (
+            id,
+            name,
+            identity,
+            age,
+            phone_num ,
+            gender,
+            wx_account,
+            update_time
+        ) values (
+            #{id},
+            #{name},
+            #{identity},
+            #{age},
+            #{phoneNum},
+            #{gender},
+            #{wxAccount},
+            #{updateTime}
+        )
+    </insert>
+
+    <update id="update">
+        update patient_info
+        set
+            name=#{name},
+            identity=#{name},
+            age=#{age},
+            phone_num=#{phoneNum} ,
+            gender=#{gender},
+            wx_account=#{wxAccount},
+            update_time=#{updateTime}
+        where id=#{id}
+    </update>
+
+</mapper>

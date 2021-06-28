@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nchu.cloudhis.dao.DepartInfoDao">
+
+    <select id="findAll" resultType="edu.nchu.cloudhis.model.DepartInfo">
+        SELECT
+            id,
+            depart_type departType,
+            depart_name departName,
+            depart_code departCode
+        FROM `depart_info`
+        where del_flag!='1'
+    </select>
+
+</mapper>

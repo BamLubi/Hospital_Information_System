@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nchu.cloudhis.dao.DrugInfoDao">
+
+    <select id="findList" resultType="edu.nchu.cloudhis.model.DrugInfo">
+        SELECT
+            id,
+            drug_code drugCode,
+            drug_name drugName,
+            unit,
+            price,
+            details,
+            stocks,
+            update_time updateTime
+        FROM `drug_info`
+        <where>
+            del_flag!='1'
+            <if test="drugName!=null and drugName!=''">
+                and drug_name like CONCAT('%',#{drugName},'%')
+            </if>
+            <if test="drugCode!=null and drugCode!=''">
+                and drug_code=#{drugCode}
+            </if>
+        </where>
+    </select>
+
+    <update id="update">
+        update drug_info
+        <set>
+            update_time = #{updateTime},
+            <if test="drugCode!=null and drugCode!=''">
+                drug_code = #{drugCode},
+            </if>
+            <if test="drugName!=null and drugName!=''">
+                drug_name = #{drugName},
+            </if>
+            <if test="unit!=null and unit!=''">
+                unit = #{unit},
+            </if>
+            <if test="price!=null and price!=''">
+                price = #{price},
+            </if>
+            <if test="details!=null and details!=''">
+                details = #{details},
+            </if>
+            <if test="stocks!=null and stocks!=''">
+                stocks = #{stocks},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insert">
+        insert into drug_info
+        (
+            id,
+            drug_code,
+            drug_name,
+            unit,
+            price,
+            details,
+            stocks,
+            update_time
+        ) values (
+             #{id},
+             #{drugCode},
+             #{drugName},
+             #{unit},
+             #{price},
+             #{details},
+             #{stocks},
+             #{updateTime}
+        )
+    </insert>
+
+    <delete id="delete">
+        delete from drug_info where id = #{id}
+    </delete>
+</mapper>

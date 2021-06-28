@@ -1,0 +1,69 @@
+<!--pages/charge/charge.wxml-->
+<view>
+  <!-- 挂号 -->
+  <van-divider contentPosition="center" customStyle="color: #1989fa; border-color: #1989fa; font-size: 18px;">
+    挂号单
+  </van-divider>
+  <!-- 挂号列表 -->
+  <view class="register-list">
+    <block wx:if="{{hasRegisterData}}">
+      <van-card title="{{registerData.patientInfo.name}}"
+        desc="--{{registerData.departInfo.departName}}--{{registerData.doctor.name}}医生--挂号：{{registerData.id}}"
+        price="{{registerData.registerFee}}">
+        <!-- 交费按钮 -->
+        <view slot="footer">
+          <!-- 已交费 -->
+          <block wx:if="{{registerData.chargeStatus=='2'}}">
+            <van-button size="normal" round type="info" disabled>
+              已交费 {{registerData.chargeTime}}
+            </van-button>
+          </block>
+          <!-- 未交费 -->
+          <block wx:else>
+            <van-button size="normal" round type="info" catchtap="chargeRegister">
+              点 击 交 费
+            </van-button>
+          </block>
+        </view>
+      </van-card>
+    </block>
+    <block wx:else>
+      <view>暂无挂号</view>
+    </block>
+  </view>
+  <!-- 处方 -->
+  <van-divider contentPosition="center" customStyle="color: #1989fa; border-color: #1989fa; font-size: 18px;">
+    处方单
+  </van-divider>
+  <!-- 处方列表 -->
+  <view class="pres-list">
+    <block wx:if="{{hasPresData}}">
+      <van-card title="{{presData.description}}"
+        desc="--{{presData.detail}}--"
+        price="{{presData.drugFee}}">
+        <!-- 药品信息 -->
+        <view slot="tags">
+          <van-tag plain type="danger" wx:for="{{presData.presDetailsList}}" wx:key="id">{{item.drugInfo.drugName}}</van-tag>
+        </view>
+        <!-- 交费按钮 -->
+        <view slot="footer">
+          <!-- 已交费 -->
+          <block wx:if="{{presData.presStatus=='2'}}">
+            <van-button size="normal" round type="info" disabled>
+              已交费 {{presData.chargeTime}}
+            </van-button>
+          </block>
+          <!-- 未交费 -->
+          <block wx:else>
+            <van-button size="normal" round type="info" catchtap="chargePres">
+              点 击 交 费
+            </van-button>
+          </block>
+        </view>
+      </van-card>
+    </block>
+    <block wx:else>
+      <view>暂无处方</view>
+    </block>
+  </view>
+</view>

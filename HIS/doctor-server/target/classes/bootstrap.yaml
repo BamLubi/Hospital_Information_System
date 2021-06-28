@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: doctor-server
+  profiles:
+    active: dev #默认使用profile为dev

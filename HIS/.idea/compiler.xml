@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="charge-server" />
+        <module name="cloud-his-commons" />
+        <module name="global-server" />
+        <module name="register-server" />
+        <module name="doctor-server" />
+        <module name="auth-gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="register-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-gateway" options="-parameters" />
+      <module name="charge-server" options="-parameters" />
+      <module name="cloud-his-backend" options="-parameters" />
+      <module name="doctor-server" options="-parameters" />
+      <module name="global-server" options="-parameters" />
+      <module name="register-server" options="-parameters" />
+    </option>
+  </component>
+</project>

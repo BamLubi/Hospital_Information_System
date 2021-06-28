@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: charge-server
+  profiles:
+    active: dev #默认使用profile为dev

@@ -1,0 +1,10 @@
+E:\nchu172021\项目相关\cloud-his-backend\auth-gateway\src\main\java\edu\nchu\cloudhis\model\BaseModel.java
+E:\nchu172021\项目相关\cloud-his-backend\auth-gateway\src\main\java\edu\nchu\cloudhis\AuthGatewayApplication.java
+E:\nchu172021\项目相关\cloud-his-backend\auth-gateway\src\main\java\edu\nchu\cloudhis\filter\JwtTokenFilter.java
+E:\nchu172021\项目相关\cloud-his-backend\auth-gateway\src\main\java\edu\nchu\cloudhis\model\EmployeeInfo.java
+E:\nchu172021\项目相关\cloud-his-backend\auth-gateway\src\main\java\edu\nchu\cloudhis\utils\JwtUtil.java
+E:\nchu172021\项目相关\cloud-his-backend\auth-gateway\src\main\java\edu\nchu\cloudhis\model\DepartInfo.java
+E:\nchu172021\项目相关\cloud-his-backend\auth-gateway\src\main\java\edu\nchu\cloudhis\model\UserInfo.java
+E:\nchu172021\项目相关\cloud-his-backend\auth-gateway\src\main\java\edu\nchu\cloudhis\utils\IdGen.java
+E:\nchu172021\项目相关\cloud-his-backend\auth-gateway\src\main\java\edu\nchu\cloudhis\utils\JwtException.java
+E:\nchu172021\项目相关\cloud-his-backend\auth-gateway\src\main\java\edu\nchu\cloudhis\utils\SnowIdWorker.java

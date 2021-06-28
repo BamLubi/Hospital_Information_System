@@ -1,0 +1,15 @@
+POST http://localhost:7777/auth/login
+Content-Type: application/json
+
+{
+  "username": "zhangyixing",
+  "password": "123456"
+}
+
+###
+POST http://localhost:7777/global/user
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoid3d3LmRlbW8iLCJleHAiOjE2MDAxMzkyNDEsInVzZXJuYW1lIjoiemhhbmd5aXhpbmcifQ.rLFRF_-Ng_ul08w7nNK5pTBtzxmYMj_1UBPW7AIf78E
+
+
+{}

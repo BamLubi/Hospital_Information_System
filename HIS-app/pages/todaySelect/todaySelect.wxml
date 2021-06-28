@@ -1,0 +1,8 @@
+<!--pages/todaySelect/todaySelect.wxml-->
+<import src="../../template/doctorCard.wxml" />
+<!-- 医生列表 -->
+<view class="doctor-list">
+  <view wx:for="{{scheduleList}}" wx:key="id">
+    <template is="doctorCard" data="{{...item}}" />
+  </view>
+</view>

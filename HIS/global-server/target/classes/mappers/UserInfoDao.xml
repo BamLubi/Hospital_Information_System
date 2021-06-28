@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nchu.cloudhis.dao.UserInfoDao">
+
+    <resultMap id="userMap" type="edu.nchu.cloudhis.model.UserInfo">
+        <id column="id" property="id"/>
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <association property="employeeInfo" javaType="edu.nchu.cloudhis.model.EmployeeInfo">
+            <id column="e_id" property="id"/>
+            <result column="name" property="name" />
+            <result column="phone" property="phone" />
+            <result column="age" property="age" />
+            <result column="job_type" property="jobType" />
+            <result column="doctor_rank" property="doctorRanker" />
+            <result column="introduce" property="introduce" />
+            <association property="departInfo" javaType="edu.nchu.cloudhis.model.DepartInfo">
+                <id column="d_id" property="id"/>
+                <result column="depart_name" property="departName"/>
+                <result column="depart_code" property="departCode"/>
+                <result column="depart_type" property="departType"/>
+            </association>
+        </association>
+    </resultMap>
+
+
+    <select id="findList" resultType="edu.nchu.cloudhis.model.UserInfo" >
+        select
+            id,
+            username,
+            password
+        from user_info
+    </select>
+
+    <select id="findAll" resultType="edu.nchu.cloudhis.model.UserInfo">
+        select
+            id,
+            username,
+            password
+        from user_info
+    </select>
+
+    <select id="find" resultMap="userMap">
+        select
+            u.id,
+            u.password,
+            u.username,
+            e.id e_id,
+            e.name,
+            e.phone,
+            e.age,
+            e.job_type,
+            e.doctor_rank,
+            e.introduce,
+            d.id d_id,
+            d.depart_name,
+            d.depart_type,
+            d.depart_code
+        from user_info u
+        left join employee_info e on e.id = u.employee_id
+        left join depart_info d on d.id = e.depart_id
+        <where>
+            u.del_flag!='1'
+            <if test="username!=null and username !=''">
+                and u.username = #{username}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert">
+        insert into user_info (
+            id,
+            username,
+            password,
+            update_time
+        )
+        values (
+            #{id},
+            #{username},
+            #{password},
+            #{updateTime}
+        )
+    </insert>
+
+    <update id="update">
+        update user_info
+        set
+            username = #{username},
+            password = #{password},
+            update_time = #{updateTime}
+        where id = #{id}
+    </update>
+</mapper>

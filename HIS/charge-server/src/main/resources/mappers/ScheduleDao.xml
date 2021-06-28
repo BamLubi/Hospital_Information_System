@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nchu.cloudhis.dao.ScheduleDao">
+
+    <resultMap id="scheduleMap" type="edu.nchu.cloudhis.model.Schedule">
+        <id column="id" property="id" />
+        <result column="name" property="doctorName" />
+        <result column="level" property="level" />
+        <result column="schedule_day" property="scheduleDay" />
+        <result column="schedule_date" property="scheduleDate" />
+        <result column="remain_am" property="remainAm" />
+        <result column="remain_pm" property="remainPm" />
+        <association property="doctor" javaType="edu.nchu.cloudhis.model.EmployeeInfo">
+            <id column="e_id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="phone" property="phone"/>
+            <result column="age" property="age"/>
+            <result column="job_type" property="jobType"/>
+            <result column="doctor_rank" property="doctorRanker"/>
+            <result column="introduce" property="introduce"/>
+            <association property="departInfo" javaType="edu.nchu.cloudhis.model.DepartInfo">
+                <id column="d_id" property="id" />
+                <result column="depart_name" property="departName"/>
+                <result column="depart_code" property="departCode"/>
+                <result column="depart_type" property="departType"/>
+            </association>
+        </association>
+        <association property="departInfo" javaType="edu.nchu.cloudhis.model.DepartInfo">
+            <id column="d_id" property="id" />
+            <result column="depart_name" property="departName"/>
+            <result column="depart_code" property="departCode"/>
+            <result column="depart_type" property="departType"/>
+        </association>
+    </resultMap>
+
+    <select id="findList" resultMap="scheduleMap">
+        SELECT
+            s.id,
+            s.level,
+            s.schedule_day,
+            s.schedule_date,
+            s.remain_am,
+            s.remain_pm,
+            e.id e_id,
+            e.name,
+            e.phone,
+            e.age,
+            e.job_type,
+            e.doctor_rank,
+            e.introduce,
+            d.id d_id,
+            d.depart_code,
+            d.depart_name,
+            d.depart_type
+        FROM `doctor_schedule` s
+        join employee_info e on e.id = s.doctor_id
+        join depart_info d on d.id  =s.depart_id
+        where s.schedule_date = #{scheduleDate}
+        <if test="departInfo.id!=null and departInfo.id!=''">
+            and s.depart_id = #{departInfo.id}
+        </if>
+        <if test="level!=null and level!=''">
+            and level = #{level}
+        </if>
+    </select>
+
+</mapper>

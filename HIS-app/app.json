@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/departSelect/departSelect",
+    "pages/userManage/userManage",
+    "pages/doctorSelect/doctorSelect",
+    "pages/patientManage/patientManage",
+    "pages/todaySelect/todaySelect",
+    "pages/charge/charge"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Njtech校医院微信服务平台",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nchu.cloudhis.dao.PrescriptionDao">
+
+    <insert id="insertPresDetails">
+        insert into pres_details
+        (drug_info_id,
+        pres_id,
+        drug_count)
+        values
+        <foreach collection="list" item="pd" separator=",">
+            (
+                #{pd.drugInfo.id},
+                #{pd.presId},
+                #{pd.drugCount}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insert">
+        insert into prescription
+        (
+            id,
+            mr_id,
+            description,
+            detail,
+            update_time,
+            drug_fee,
+            pres_status,
+            doctor_id
+        ) values (
+            #{id},
+            #{registerInfo.id},
+            #{description},
+            #{detail},
+            #{updateTime},
+            #{drugFee},
+            0,
+            #{doctor.id}
+        )
+    </insert>
+
+    <resultMap id="presMap" type="edu.nchu.cloudhis.model.Prescription">
+        <id column="id" property="id" />
+        <result column="detail" property="detail" />
+        <result column="description" property="description" />
+        <result column="drug_fee" property="drugFee" />
+        <result column="pres_status" property="presStatus" />
+        <result column="charge_time" property="chargeTime" />
+        <result column="receive_time" property="receiveTime" />
+        <collection property="presDetailsList" ofType="edu.nchu.cloudhis.model.PresDetails">
+            <result column="id" property="presId"/>
+            <result column="drug_count" property="drugCount"/>
+            <association property="drugInfo" javaType="edu.nchu.cloudhis.model.DrugInfo">
+                <id column="dr_id" property="id"/>
+                <result column="drug_code" property="drugCode" />
+                <result column="drug_name" property="drugName" />
+                <result column="unit" property="unit" />
+                <result column="price" property="price" />
+                <result column="details" property="details" />
+                <result column="stocks" property="stocks" />
+            </association>
+        </collection>
+    </resultMap>
+
+    <select id="find" resultMap="presMap">
+        SELECT
+        p.id,
+        p.description,
+        p.detail,
+        p.drug_fee,
+        p.pres_status,
+        p.charge_time,
+        p.receive_time,
+        pd.drug_count,
+        dr.id dr_id,
+        dr.drug_code,
+        dr.drug_name,
+        dr.unit,
+        dr.price,
+        dr.details,
+        dr.stocks
+        FROM `prescription` p
+        LEFT JOIN pres_details pd on p.id = pd.pres_id
+        LEFT JOIN drug_info dr on dr.id = pd.drug_info_id
+        <where>
+            p.del_flag!='1' and dr.del_flag!='1'
+            <if test="registerInfo!=null and registerInfo.id!=null and registerInfo.id!=''">
+                and p.mr_id = #{registerInfo.id}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deletePresDetails">
+        delete from pres_details where pres_id = #{id}
+    </delete>
+
+    <update id="update">
+        update prescription
+        <set>
+            update_time = #{updateTime},
+            <if test="description!=null and description!=''">
+                description = #{description},
+            </if>
+            <if test="detail!=null and detail!=''">
+                detail = #{detail},
+            </if>
+            <if test="drugFee!=null">
+                drug_fee = #{drugFee},
+            </if>
+            <if test="receiveTime!=null">
+                receive_time = #{receiveTime},
+            </if>
+            <if test="chargeTime!=null">
+                charge_time = #{chargeTime},
+            </if>
+            <if test="presStatus!=null and presStatus!=''">
+                pres_status = #{presStatus},
+            </if>
+            <if test="doctor!=null and doctor.id!=null and doctor.id!=''">
+                doctor_id = #{doctor.id},
+            </if>
+            <if test="registerInfo!=null and registerInfo.id!=null and registerInfo.id!=''">
+                mr_id = #{registerInfo.id}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>

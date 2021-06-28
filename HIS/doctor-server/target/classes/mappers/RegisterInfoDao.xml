@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nchu.cloudhis.dao.RegisterInfoDao">
+
+    <resultMap id="registerMap" type="edu.nchu.cloudhis.model.RegisterInfo">
+        <id property="id" column="id" />
+        <result property="chargeStatus" column="charge_status" />
+        <result property="chargeTime" column="charge_time" />
+        <result property="registerFee" column="register_fee" />
+        <association property="patientInfo" javaType="edu.nchu.cloudhis.model.PatientInfo">
+            <id property="id" column="patient_id"/>
+            <result property="name" column="name" />
+            <result property="age" column="age" />
+            <result property="gender" column="gender" />
+            <result property="identity" column="identity" />
+            <result property="phoneNum" column="phone_num" />
+        </association>
+        <association property="doctor" javaType="edu.nchu.cloudhis.model.EmployeeInfo">
+            <id property="id" column="d_id"/>
+            <result property="name" column="d_name"/>
+        </association>
+        <association property="departInfo" javaType="edu.nchu.cloudhis.model.DepartInfo">
+            <id property="id" column="depart_id"/>
+            <result property="departName" column="depart_name"/>
+        </association>
+    </resultMap>
+
+    <select id="find" resultMap="registerMap">
+        SELECT
+            r.id,
+            r.patient_id,
+            r.charge_status,
+            r.charge_time,
+            r.register_fee,
+            p.name,
+            p.gender,
+            p.identity,
+            p.age,
+            p.phone_num,
+            d.id d_id,
+            d.name d_name,
+            depart.id depart_id,
+            depart.depart_name
+        FROM register_info r
+        join patient_info p on p.id = r.patient_id
+        join depart_info depart on depart.id = r.depart_id
+        join employee_info d on d.id = r.doctor_id
+        <where>
+            p.del_flag!='1'
+            and r.del_flag!='1'
+            <if test="id!=null and id!=''">
+                and r.id = #{id}
+            </if>
+            <if test="patientInfo!=null and patientInfo.name!=null and patientInfo.name !=''">
+                and p.name = #{patientInfo.name}
+            </if>
+        </where>
+        order by r.id desc limit 1
+    </select>
+
+
+</mapper>
